@@ -1,0 +1,11 @@
+<web-fragment>
+    <name>spring-session</name>
+    <ordering>
+        <after>
+            <others/>
+        </after>
+    </ordering>
+    <listener>
+        <listener-class>com.skyding.autoconfigure.SessionContextListener</listener-class>
+    </listener>
+</web-fragment>
