@@ -6,6 +6,6 @@
         </after>
     </ordering>
     <listener>
-        <listener-class>com.skyding.autoconfigure.SessionContextListener</listener-class>
+        <listener-class>com.skyding.autoconfigure.RedisSessionContextListener</listener-class>
     </listener>
 </web-fragment>
