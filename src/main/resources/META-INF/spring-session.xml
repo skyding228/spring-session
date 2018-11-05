@@ -8,9 +8,5 @@
 
     <context:annotation-config/>
     <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>
-    <!--<bean id="jedisConnFactory "-->
-          <!--class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory ">-->
-    <!--</bean>-->
-    <!--<bean class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory"/>-->
 
 </beans>

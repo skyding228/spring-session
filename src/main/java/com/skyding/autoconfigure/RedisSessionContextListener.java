@@ -3,6 +3,7 @@ package com.skyding.autoconfigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
@@ -47,16 +48,12 @@ public class RedisSessionContextListener implements ServletContextListener {
                             "check whether you have a ContextLoader* definitions in your web.xml!");
         }
         XmlWebApplicationContext applicationContext = (XmlWebApplicationContext) contextAttribute;
-        //        applicationContext.getBeanFactory().configureBean()
         if (isEnable(applicationContext)) {
-            List<String> locations = new ArrayList();
-            String[] currentLocations = applicationContext.getConfigLocations();
-            locations.addAll(Arrays.asList(currentLocations));
-            locations.add("classpath:META-INF/spring-session.xml");
-            applicationContext.setConfigLocations(locations.toArray(new String[locations.size()]));
+            applicationContext.addBeanFactoryPostProcessor(new RedisSessionPostProcessor());
             applicationContext.refresh();
             addSessionFilter(servletContext);
         }
+        LOG.info("{} configured spring-session with Redis automatically.", MODULE_NAME);
     }
 
     protected RedisConnectionFactory getConnectFactory(ApplicationContext applicationContext) {
@@ -87,7 +84,7 @@ public class RedisSessionContextListener implements ServletContextListener {
         FilterRegistration filterRegistration = servletContext.addFilter(SESSION_FILTER_NAME, DelegatingFilterProxy.class);
         if (filterRegistration == null) {
             throw new IllegalStateException(
-                    MODULE_NAME + "Cannot initialize spring-session because there is a filter named" + SESSION_FILTER_NAME + " already - ");
+                    MODULE_NAME + "Cannot initialize spring-session because there already is a filter named" + SESSION_FILTER_NAME + ".");
         }
         filterRegistration.addMappingForUrlPatterns(null, false, "/*");
     }
