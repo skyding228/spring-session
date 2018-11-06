@@ -12,8 +12,8 @@ A pluggable module used for configuring spring session with redis,which makes th
 </dependency>
 ```
 
-## 2 register a `org.springframework.data.redis.connection.jedis.JedisConnectionFactory`
-`JedisConnectionFactory` must be in RootWebApplicationContext,which means your `web.xml` must includes
+## 2 register a `JedisConnectionFactory`
+`org.springframework.data.redis.connection.jedis.JedisConnectionFactory` must be in RootWebApplicationContext,which means your `web.xml` must includes
 ```xml
 <context-param>
     <param-name>contextConfigLocation</param-name>
