@@ -52,8 +52,10 @@ public class RedisSessionContextListener implements ServletContextListener {
             applicationContext.addBeanFactoryPostProcessor(new RedisSessionPostProcessor());
             applicationContext.refresh();
             addSessionFilter(servletContext);
+            LOG.info("{} configured spring-session with Redis automatically.", MODULE_NAME);
+        } else {
+            LOG.warn("{} module jar is in classpath, but spring-session is disabled.", MODULE_NAME);
         }
-        LOG.info("{} configured spring-session with Redis automatically.", MODULE_NAME);
     }
 
     protected RedisConnectionFactory getConnectFactory(ApplicationContext applicationContext) {
