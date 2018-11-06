@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.skyding.autoconfigure</groupId>
-    <artifactId>spring-session</artifactId>
+    <groupId>com.github.skyding228</groupId>
+    <artifactId>spring-session-redis</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>spring-session</name>
+    <name>spring-session-redis</name>
     <description>A Spring plugin for spring-session</description>
     <url>https://github.com/skyding228/spring-session</url>
     <licenses>
@@ -90,16 +90,16 @@
             <url>http://repo.maven.apache.org/maven2</url>
         </repository>
     </repositories>
-    <!--<distributionManagement>-->
-        <!--<snapshotRepository>-->
-            <!--<id>MavenCentral</id>-->
-            <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
-        <!--</snapshotRepository>-->
-        <!--<repository>-->
-            <!--<id>MavenCentral</id>-->
-            <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-        <!--</repository>-->
-    <!--</distributionManagement>-->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>MavenCentral</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>MavenCentral</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
@@ -151,22 +151,22 @@
                     </links>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>maven-gpg-plugin</artifactId>-->
-                <!--<version>${maven-gpg-plugin.version}</version>-->
-                <!--<configuration>-->
-                    <!--<skip>false</skip>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>sign-artifacts</id>-->
-                        <!--<phase>verify</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>sign</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
